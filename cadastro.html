@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./stylecadastro.css">
+</head>
+<body>
+    <div class="container">
+        <div class="alto">
+        <div class="titulo1">
+             <h2>Cadastro de Cliente</h2>
+        </div>
+            <div class="links">
+                 <a href="./Index..html">Home </a> 
+            </div>
+        </div>
+        <div class="titulo2 ">
+            <h5>Preencha os Dados Abaixo</h5>
+        </div>
+        <div>
+            <form id="form">
+                <div class="input_grupo">
+                    <div class="item-form">
+                        <label for="input-name">Nome:</label>
+                        <input type="username" name="nome" id="input-name" required>
+                    </div>
+                    <div  class="item-form">
+                        <label for="input-email">Email:</label>
+                        <input type="email" name="email" id="input-email" required>
+                    </div>
+                    <div  class="item-form">
+                        <label for="input-senha">Senha:</label>
+                        <input type="password" name="senha" id="input-senha" required>
+                    </div>
+                    <div  class="item-form">
+                        <label for="input-senha2" >Confirme Senha:</label>
+                        <input type="password" name="senha2" id="input-senha2" autocomplete="off" required>
+                        </div>
+                    <div  class="item-form">
+                        <label for="input-telefone">Telefone:</label>
+                        <input type="tel" name="tel" id="input-telefone" autocomplete="tel" pattern= "^[0-9]{4}-[0-9]{4}$" required>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="reset" id="button-reset">limpar</button>
+                <button type="submit" onclick="salvar()" id="button-submit">cadastar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    <script src="./javacadastro.js">
+    
+    const form = document.getElementById("form");
+    const inputNome = document.getElementById("#input-nome");
+    const inputEmail = document.getElementById("#input-email");
+    const inputSenha = document.getElementById("#input-senha");
+    const inputSenha2 = document.getElementById("#input-senha2");
+    const inputTelefone = document.getElementById("#input-telefone");
+
+    var dados = JSON.parse(localStorage.getItem("dados")) || [];
+        
+    function salvar() {
+        let novoNome = inputNome.value;
+        let novoEmail = inputEmail.value;
+        let novaSenha = inputSenha.value;
+        let novaSenha2 = inputSenha2.value;
+        let novoTelefone = inputTelefone.value;
+
+        dados.push({
+            nome: novoNome,
+            email: novoEmail,
+            senha: novaSenha,
+            senha2: novaSenha2,
+            telefone: novoTelefone
+        });
+
+        localStorage.setItem("dados", JSON.stringify(dados)); 
+    }
+    </script>
+    
+   
+</body>
+</html>
